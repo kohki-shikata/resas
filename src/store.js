@@ -57,7 +57,7 @@ export default new Vuex.Store({
           },
         })
         .then(response => {
-          console.log(response.data.result)
+          // console.log(response.data.result)
           commit('SET_PREFS', response.data.result)
         })
     },
@@ -72,7 +72,7 @@ export default new Vuex.Store({
         })
         .then(response => {
           const years = _.map(response.data.result.data[0].data, 'year')
-          console.log(years)
+          // console.log(years)
           commit('SET_YEARS', years)
         })
     },
@@ -81,10 +81,10 @@ export default new Vuex.Store({
       // check the data of the prefecture
       let checkExist = this.state.chartData.series.filter(elem => elem.id === id)
 
-      console.log(checkExist)
+      // console.log(checkExist)
 
       if(checkExist.length) {
-        console.log("the data of this prefecture already exists.")
+        // console.log("the data of this prefecture already exists.")
         commit('DELETE_CHARTDATA', id)
       } else {
         const endpoint = 'https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear'
