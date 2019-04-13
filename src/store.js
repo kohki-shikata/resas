@@ -33,17 +33,17 @@ export default new Vuex.Store({
     SET_YEARS (state, years) {
       state.chartData.xAxis.categories = years
     },
-    SET_CHARTDATA (state, data) {
-      state.chartData.series.push({
+    async SET_CHARTDATA (state, data) {
+      await state.chartData.series.push({
         id: data.id,
         name: state.prefs[data.id - 1].prefName,
-        data: data.values,
+        data: data.values
       })
     },
-    DELETE_CHARTDATA (state, id) {
+    async DELETE_CHARTDATA (state, id) {
       console.log(state.chartData.datasets)
-      state.chartData.series.filter((elem,i) => {
-        if(elem.id == id) this.state.chartData.series.splice(i,id)
+      await state.chartData.series.find((elem,i) => {
+        if(elem.id == id) this.state.chartData.series.splice(i,1)
       })
     }
   },
