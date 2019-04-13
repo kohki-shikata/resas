@@ -16,12 +16,7 @@ import { Chart } from 'highcharts-vue'
 export default {
   name: 'home',
   components: {
-    highcharts: Chart
-  },
-  data () {
-    return {
-      chartOpts  
-    }
+    highcharts: Chart,
   },
   computed: mapState([
     'prefs',
