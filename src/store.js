@@ -41,8 +41,8 @@ export default new Vuex.Store({
       })
     },
     async DELETE_CHARTDATA (state, id) {
-      console.log(state.chartData.datasets)
-      await state.chartData.series.find((elem,i) => {
+      // console.log(state.chartData.series)
+      await state.chartData.series.filter((elem,i) => {
         if(elem.id == id) this.state.chartData.series.splice(i,1)
       })
     }
