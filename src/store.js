@@ -99,17 +99,10 @@ export default new Vuex.Store({
             let population = response.data.result.data[0].data
             population = _.map(population, 'value')
             
-            // Make random color for chart. Transparency is always 10%.
-            const random_rgba = () => {
-              const o = Math.round, r = Math.random, s = 255;
-              return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + '0.1' + ')';
-            }
-            
             const data = {
               id: id,
               values: population,
               chartType: 'bar',
-              // backgroundColor: random_rgba()
             }
             commit('SET_CHARTDATA', data)
           })
