@@ -1,9 +1,19 @@
 <template lang="pug">
 .main
-  .title
-    h1 日本の人口推移
+  globalHeader
   router-view
 </template>
+
+<script>
+import globalHeader from '@/components/globalHeader'
+export default {
+  components: {
+    globalHeader
+  }
+}
+</script>
+
+
 <style lang="stylus">
 
 </style>
