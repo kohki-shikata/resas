@@ -25,6 +25,7 @@
     "@vue/cli-plugin-babel": "^3.0.3",
     "@vue/cli-plugin-pwa": "^3.0.3",
     "@vue/cli-service": "^3.0.3",
+    "bp-vuejs-dropdown": "^2.1.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "vue-cli-plugin-pug": "^1.0.7",
