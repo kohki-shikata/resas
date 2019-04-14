@@ -1,35 +1,25 @@
 <template lang="pug">
-.main
-  .title
-    h1 日本の人口推移
-  .prefs
-    ol
-      li(v-for="item in this.$store.state.prefs")
-        input(type="checkbox" :id="item.prefName" :data-pref-code="item.prefCode" :ref="item.prefCode" @click="getPrefPopulation(item.prefCode)")
-        label(:for="item.prefName")
-          | {{ item.prefName }}
+.home
+  prefectures
   .chart
     highcharts(:options="this.$store.state.chartData")
 </template>
 
 <script>
+import prefectures from '@/components/prefectures'
 import { mapState } from 'vuex'
 import { Chart } from 'highcharts-vue'
 
 export default {
   name: 'home',
   components: {
+    prefectures,
     highcharts: Chart,
   },
   computed: mapState([
     'prefs',
     'chartData'
   ]),
-  methods: {
-    getPrefPopulation(id) {
-      this.$store.dispatch('getPopulation',id)
-    }
-  },
   mounted () {
     this.$store.dispatch('loadPrefs')
     this.$store.dispatch('loadYears')
