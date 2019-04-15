@@ -29,9 +29,11 @@ export default new Vuex.Store({
   mutations: {
     SET_PREFS (state, prefs) {
       state.prefs = prefs
+      localStorage.setItem('ksr-prefs', JSON.stringify(prefs))
     },
     SET_YEARS (state, years) {
       state.chartData.xAxis.categories = years
+      localStorage.setItem('ksr-years', JSON.stringify(years))
     },
     async SET_CHARTDATA (state, data) {
       await state.chartData.series.push({
@@ -50,7 +52,9 @@ export default new Vuex.Store({
   actions: {
     async loadPrefs ({ commit }) {
       // Get all prefs from API
-      await axios
+      const localPrefs = localStorage.getItem('ksr-prefs')
+      if(!localPrefs) {
+        await axios
         .get('https://opendata.resas-portal.go.jp/api/v1/prefectures', {
           headers: {
             'X-API-KEY': process.env.VUE_APP_API_KEY,
@@ -60,11 +64,16 @@ export default new Vuex.Store({
           // console.log(response.data.result)
           commit('SET_PREFS', response.data.result)
         })
+      } else {
+        commit('SET_PREFS', JSON.parse(localPrefs))
+      }
     },
 
     async loadYears ({ commit }) {
       // Get year from API for X-axis
-      await axios
+      const localYears = localStorage.getItem('ksr-years')
+      if(!localYears) {
+        await axios
         .get('https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?prefCode=1', {
           headers: {
             'X-API-KEY': process.env.VUE_APP_API_KEY
@@ -75,6 +84,9 @@ export default new Vuex.Store({
           // console.log(years)
           commit('SET_YEARS', years)
         })
+      } else {
+        commit('SET_YEARS', JSON.parse(localYears))
+      }
     },
 
     getPopulation({commit}, id) {
@@ -98,7 +110,7 @@ export default new Vuex.Store({
             // Get population data of the prefecture
             let population = response.data.result.data[0].data
             population = _.map(population, 'value')
-            
+
             const data = {
               id: id,
               values: population,
@@ -106,7 +118,6 @@ export default new Vuex.Store({
             }
             commit('SET_CHARTDATA', data)
           })
-        
       }
     }
   }
