@@ -7,10 +7,10 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^1.7.2",
     "axios-jsonp": "^1.0.2",
     "core-js": "^2.6.5",
-    "highcharts": "^7.1.1",
+    "highcharts": "^11.4.3",
     "highcharts-vue": "^1.2.0",
     "lodash": "^4.17.11",
     "register-service-worker": "^1.6.2",
@@ -23,11 +23,11 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.3",
-    "@vue/cli-plugin-pwa": "^3.0.3",
-    "@vue/cli-service": "^3.0.3",
+    "@vue/cli-plugin-pwa": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "vue-cli-plugin-pug": "^1.0.7",
+    "vue-cli-plugin-pug": "^2.0.0",
     "vue-template-compiler": "^2.5.21"
   },
   "postcss": {
